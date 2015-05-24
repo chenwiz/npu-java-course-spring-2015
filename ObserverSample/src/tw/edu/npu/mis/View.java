@@ -30,7 +30,7 @@ package tw.edu.npu.mis;
  *
  * @author Samael Wang <freesamael@gmail.com>
  */
-public class View {
+public class View implements AllView{
 
     private final String mName;
     private final Window mWindow;
