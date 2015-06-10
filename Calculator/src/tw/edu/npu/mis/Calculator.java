@@ -5,10 +5,21 @@
  */
 package tw.edu.npu.mis;
 
+import java.util.Observable;
+
 /**
  * The model class of the calculator application.
  */
-public class Calculator {
+
+public class Calculator extends Observable {
+    
+    private double mNB;
+    private double mPLUS;  //+
+    private double mMINUS; //-
+    private double mTIMES; // ×
+    private double mOVER;  // ⁄
+    private double mPLUS_MINUS; // ±
+    
     
     /**
      * The available operators of the calculator.
