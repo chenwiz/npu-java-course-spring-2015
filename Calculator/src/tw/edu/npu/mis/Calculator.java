@@ -12,14 +12,11 @@ import java.util.Observable;
  */
 
 public class Calculator extends Observable {
-    
-    private double mNB;
-    private double mPLUS;  //+
-    private double mMINUS; //-
-    private double mTIMES; // ×
-    private double mOVER;  // ⁄
-    private double mPLUS_MINUS; // ±
-    
+    private double mNumber1;
+    private double mNumber2;
+    private double mShow;
+   
+     
     
     /**
      * The available operators of the calculator.
@@ -44,8 +41,16 @@ public class Calculator extends Observable {
         MEM_RECALL   // MR
     }
     
-    public void appendDigit(int digit) {
+    public void appendDigit(String digit) {
         // TODO code application logic here
+        if(!digit.equals("")){
+            mNumber1 = Double.valueOf(digit);
+            mShow = mNumber1;            
+        }else{
+            mNumber2 = Double.valueOf(digit);
+            mShow = mNumber2; 
+        }
+        
     }
     
     public void appendDot() {
