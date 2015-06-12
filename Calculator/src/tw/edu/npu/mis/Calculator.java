@@ -41,18 +41,30 @@ public class Calculator extends Observable {
     public void appendDigit(int digit) {
         // TODO code application logic here
         mShow += Integer.toString(digit);
+        
         setChanged();
         notifyObservers();
         
     }
-    
-    public void appendDot() {
+    /**
+     * 小數點
+     * @param s 
+     */
+    public void appendDot(String s) {
         // TODO code application logic here     
-       
+        mShow += String.valueOf(s);
+        setChanged();
+        notifyObservers();
+        
+        
+        
     }
     
     public void performOperation(Operator operator) {
            // TODO code application logic here
+        /**
+         * 運算方式+-x/
+         */
         if(operator == Operator.PLUS){
             mOperator = "+";
             mOneNumber = mShow;
@@ -80,7 +92,9 @@ public class Calculator extends Observable {
         if(operator == Operator.BACKSPACE){
             mShow = mShow.substring(0, mShow.length() - 1);
         }
-        
+        /**
+         * 
+         */
         switch (operator) {
             case EQUAL:                
                 switch (mOperator) {
@@ -99,6 +113,7 @@ public class Calculator extends Observable {
                     case "":
                         return;
                 }
+                mOperator = "";
                 break;           
         }
         setChanged();

@@ -198,6 +198,9 @@ public class ComputerForm extends javax.swing.JFrame implements Observer{
             }
         });
 
+        jTextField1.setFont(new java.awt.Font("新細明體", 0, 48)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -341,7 +344,7 @@ public class ComputerForm extends javax.swing.JFrame implements Observer{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        mCalculator.appendDot();
+        mCalculator.appendDot(".");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void NB0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB0ActionPerformed
@@ -431,6 +434,7 @@ public class ComputerForm extends javax.swing.JFrame implements Observer{
     }
     
     public void update(Observable obj,Object arg){
+        //jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setText(mCalculator.getDisplay());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
