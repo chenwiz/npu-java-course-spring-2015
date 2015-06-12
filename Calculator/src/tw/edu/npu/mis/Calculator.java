@@ -12,11 +12,8 @@ import java.util.Observable;
  */
 
 public class Calculator extends Observable {
-    private double mNumber1;
-    private double mNumber2;
-    private double mShow;
-   
-     
+    private String mShow = "", mOneNumber = "", mOperator = "",mAns = "",a;
+    
     
     /**
      * The available operators of the calculator.
@@ -41,37 +38,87 @@ public class Calculator extends Observable {
         MEM_RECALL   // MR
     }
     
-    public void appendDigit(String digit) {
+    public void appendDigit(int digit) {
         // TODO code application logic here
-        if(!digit.equals("")){
-            mNumber1 = Double.valueOf(digit);
-            mShow = mNumber1;            
-        }else{
-            mNumber2 = Double.valueOf(digit);
-            mShow = mNumber2; 
-        }
+        mShow += Integer.toString(digit);
+        setChanged();
+        notifyObservers();
         
     }
     
     public void appendDot() {
-        // TODO code application logic here
+        // TODO code application logic here     
+       
     }
     
     public void performOperation(Operator operator) {
-        // TODO code application logic here
+           // TODO code application logic here
+        if(operator == Operator.PLUS){
+            mOperator = "+";
+            mOneNumber = mShow;
+            mShow= "";   
+        }
+        if(operator == Operator.MINUS){
+            mOperator = "-";
+            mOneNumber = mShow;
+            mShow = ""; 
+        }
+        if(operator == Operator.TIMES){
+            mOperator = "*";
+            mOneNumber = mShow;
+            mShow = "";
+        }
+        if(operator == Operator.OVER){
+            mOperator = "/";
+            mOneNumber = mShow;
+            mShow = "";  
+        }
+        if(operator == Operator.CLEAR)
+        {
+            mShow = "0";
+        }
+        if(operator == Operator.BACKSPACE){
+            mShow = mShow.substring(0, mShow.length() - 1);
+        }
+        
+        switch (operator) {
+            case EQUAL:                
+                switch (mOperator) {
+                    case "+":
+                        mShow = String.valueOf(Float.parseFloat(mOneNumber) + Float.parseFloat(mShow));
+                        break;
+                    case "-":
+                        mShow = String.valueOf(Float.parseFloat(mOneNumber) - Float.parseFloat(mShow));
+                        break;
+                    case "*":
+                        mShow = String.valueOf(Float.parseFloat(mOneNumber) * Float.parseFloat(mShow));
+                        break;
+                    case "/":
+                        mShow = String.valueOf(Float.parseFloat(mOneNumber) / Float.parseFloat(mShow));
+                        break;
+                    case "":
+                        return;
+                }
+                break;           
+        }
+        setChanged();
+        notifyObservers();
     }
-    
+
     public String getDisplay() {
-        // TODO code application logic here
-        return null;
+        mAns= mShow + mOperator;
+        return mAns;
     }
+  
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        new ComputerForm().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ComputerForm().setVisible(true);
+            }
+        });
     }
-
 }

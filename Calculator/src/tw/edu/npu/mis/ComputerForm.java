@@ -4,20 +4,27 @@
  * and open the template in the editor.
  */
 package tw.edu.npu.mis;
+import java.util.Observable;
+import java.util.Observer;
+import tw.edu.npu.mis.Calculator.*;
 
 /**
  *
  * @author STP
  */
-public class ComputerForm extends javax.swing.JFrame {
+public class ComputerForm extends javax.swing.JFrame implements Observer{
 
+    Calculator mCalculator = new Calculator();
     /**
-     * Creates new form ComputerForm
+     * Creates new form CalculatorView
      */
     public ComputerForm() {
         initComponents();
+        mCalculator.addObserver(this);
+        
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -294,88 +301,98 @@ public class ComputerForm extends javax.swing.JFrame {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.CLEAR);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.BACKSPACE);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.OVER);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.PLUS);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.MINUS);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        mCalculator.performOperation(Operator.TIMES);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        mCalculator.performOperation(Operator.EQUAL);              
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+       // mCalculator.performOperation(Operator.PLUS_MINUS); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        mCalculator.appendDot();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void NB0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB0ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("0");
+        mCalculator.appendDigit(0);
     }//GEN-LAST:event_NB0ActionPerformed
 
     private void NB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB1ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("1");
+        mCalculator.appendDigit(1);
     }//GEN-LAST:event_NB1ActionPerformed
 
     private void NB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB2ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("2");
+        mCalculator.appendDigit(2);
     }//GEN-LAST:event_NB2ActionPerformed
 
     private void NB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB3ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("3");
+        mCalculator.appendDigit(3);
     }//GEN-LAST:event_NB3ActionPerformed
 
     private void NB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB4ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("4");
+        mCalculator.appendDigit(4);
     }//GEN-LAST:event_NB4ActionPerformed
 
     private void NB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB5ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("5");
+        mCalculator.appendDigit(5);
     }//GEN-LAST:event_NB5ActionPerformed
 
     private void NB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB6ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("6");
+        mCalculator.appendDigit(6);
     }//GEN-LAST:event_NB6ActionPerformed
 
     private void NB7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB7ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("7");
+         mCalculator.appendDigit(7);
     }//GEN-LAST:event_NB7ActionPerformed
 
     private void NB8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB8ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("8");
+        
+        mCalculator.appendDigit(8);
     }//GEN-LAST:event_NB8ActionPerformed
 
     private void NB9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NB9ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("9");
+        mCalculator.appendDigit(9);
     }//GEN-LAST:event_NB9ActionPerformed
 
     /**
@@ -412,7 +429,10 @@ public class ComputerForm extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void update(Observable obj,Object arg){
+        jTextField1.setText(mCalculator.getDisplay());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton NB0;
     private javax.swing.JButton NB1;
